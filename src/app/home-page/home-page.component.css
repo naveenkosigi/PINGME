@@ -1,0 +1,17 @@
+.welcome-page-container{
+    display: flex;
+}
+
+.welcome-animation-container,.login-container{
+    width: 50%;
+    height: 100vh;
+}
+
+.welcome-animation-container{
+    background-color: #0096FF;
+}
+
+.login-container .header{
+    margin: auto;
+    width: min-content;
+}

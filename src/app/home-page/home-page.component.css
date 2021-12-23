@@ -68,3 +68,8 @@
     font-size: inherit;
     width: 8rem;
 }
+
+.company-name{
+    font-family: 'Pacifico', cursive;
+    font-size: 2rem;
+}

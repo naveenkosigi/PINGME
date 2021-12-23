@@ -24,10 +24,11 @@
 }
 
 .form-container{
-    margin-top: 5rem;
     display: flex;
     flex-direction: column;
     width: 23.125rem;
+    position: absolute;
+    top: 30%;
 }
 
 #email,#password{

@@ -78,11 +78,15 @@
     margin: auto;
     height: 35rem;
     width: 35rem;
+    max-height: 40rem;
+    max-width: 40rem;
 }
 
 .component-container img{
     width: inherit;
     height: inherit;
+    max-width: inherit;
+    max-width: inherit;
 }
 
 

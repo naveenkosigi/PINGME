@@ -73,3 +73,17 @@
     font-family: 'Pacifico', cursive;
     font-size: 2rem;
 }
+
+.component-container{
+    margin: auto;
+    height: 35rem;
+    width: 35rem;
+}
+
+.component-container img{
+    width: inherit;
+    height: inherit;
+}
+
+
+

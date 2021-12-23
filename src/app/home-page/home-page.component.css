@@ -27,6 +27,7 @@
     margin-top: 5rem;
     display: flex;
     flex-direction: column;
+    width: 23.125rem;
 }
 
 #email,#password{
@@ -34,6 +35,8 @@
     width: 100%;
     border: unset;
     border-bottom: 2px solid black;
+    font-size: 1rem;
+    font-weight: 400;
 }
 
 #email:focus-visible,#password:focus-visible{
@@ -44,4 +47,23 @@
 .email-field,.password-field{
     padding-bottom: 1.5rem;
     color: #696969;
+}
+
+.forgot-password{
+    color: #0096FF;
+}
+
+.others-field{
+    display: flex;
+    justify-content: space-between;
+    font-size: 1rem;
+    align-items: center;
+}
+
+#logIn{
+    background-color: #0096FF;
+    color: white;
+    border-radius: 0.5rem;
+    font-size: inherit;
+    width: 8rem;
 }

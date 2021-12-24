@@ -10,23 +10,23 @@
             <span class="company-name">
                 Pingme
             </span>
-            <div class="form-container">
+            <form class="form-container" [formGroup]="form">
                 <span class="welcome-text">WELCOME BACK !</span>
                 <div class="email-field">
                     <label for="email">Email</label>
-                    <input type="text" id="email">
+                    <input type="text" id="email" formControlName="email">
                 </div>
                 <div class="password-field">
                     <label for="password">Password</label>
-                    <input type="password" id="password">
+                    <input type="password" id="password" formControlName="password">
                 </div>
                 <div class="others-field">
                     <span class="forgot-password">Forgot Password ? </span>
-                    <button type="button" value="Log-In" id="logIn">Log-In
+                    <button type="button" value="Log-In" id="logIn" (click)="onSave()" [disabled]="!form.valid">Log-In
                         <svg width="24" height="24" style="vertical-align: middle;" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M12 0c6.623 0 12 5.377 12 12s-5.377 12-12 12-12-5.377-12-12 5.377-12 12-12zm0 1c6.071 0 11 4.929 11 11s-4.929 11-11 11-11-4.929-11-11 4.929-11 11-11zm-3 5.753l6.44 5.247-6.44 5.263.678.737 7.322-6-7.335-6-.665.753z"/></svg>
                     </button>
                 </div>
-            </div>
+            </form>
         </div>
     </div>    
 </div>

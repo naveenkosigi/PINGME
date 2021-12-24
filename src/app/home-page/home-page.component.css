@@ -69,6 +69,9 @@
     width: 8rem;
 }
 
+#login:disabled{
+    cursor: not-allowed;
+}
 .company-name{
     font-family: 'Pacifico', cursive;
     font-size: 2rem;
@@ -87,6 +90,10 @@
     height: inherit;
     max-width: inherit;
     max-width: inherit;
+}
+
+#email.ng-invalid.ng-touched,#password.ng-invalid.ng-touched{
+    border-bottom: 2px solid red;
 }
 
 @media (max-width:67.5rem) {

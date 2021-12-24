@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -9,7 +10,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class HomePageComponent implements OnInit {
 
   form:FormGroup;
-  constructor() { 
+  constructor(private fireStoreAuth:AngularFireAuth) { 
     this.form=new FormGroup({
       email:new FormControl(null,[Validators.required,Validators.email]),
       password:new FormControl(null,Validators.required)
@@ -19,9 +20,18 @@ export class HomePageComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSave():void{
+ async onSave() : Promise<any>{
     if(this.form.valid){
-      console.log(this.form);
+      try{
+        const email=this.form.get('email')?.value;
+        const password=this.form.get('password')?.value;
+
+        await this.fireStoreAuth.signInWithEmailAndPassword(email,password); console.log("logged in");
+      }
+      catch(e){
+        alert("Verify your username/password");
+      }
+      
     }
   }
 }

@@ -74,3 +74,11 @@ nav .nav-pages{
 .other-options-container input[placeholder="Search"]{
     width: 12.5rem;
 }
+
+.other-options-container *:focus-visible{
+    outline:2px solid #0096FF;
+}
+
+.other-options-container button{
+    cursor: pointer;
+}

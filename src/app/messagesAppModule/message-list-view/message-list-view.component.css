@@ -53,7 +53,7 @@
 nav .nav-pages{
     display: flex;
     justify-content: space-between;
-    width: 35rem;
+    width: 36rem;
 }
 
 .nav-pages-item{
@@ -100,4 +100,14 @@ nav .nav-pages{
 
 .other-options-container button{
     cursor: pointer;
+}
+
+@media (max-width:41.75rem){
+    header{
+        display: none;
+    }
+
+    .nav-pages{
+        width: 100% !important;
+    }
 }

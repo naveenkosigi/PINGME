@@ -16,7 +16,7 @@
                          "chats message   message message message"
                          "chats message   message message message";
     grid-template-rows: 6rem 4rem repeat(3,auto);
-    grid-template-columns: repeat(5,auto);
+    grid-template-columns: minmax(0px,max-content);
     row-gap: 1rem;
     column-gap: 4rem;                     
 }
@@ -54,7 +54,8 @@
 .chats-container{
     max-width: 400px;
     padding: 14px;
-    border-radius: 67px
+    border-radius: 67px;
+    min-width:400px;
 }
 
 nav .nav-pages{

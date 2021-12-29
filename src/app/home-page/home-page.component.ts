@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterContentInit, Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -15,7 +15,7 @@ import { appState } from '../store/store-definitions';
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.css']
 })
-export class HomePageComponent implements OnInit {
+export class HomePageComponent implements OnInit,AfterContentInit {
 
   form:FormGroup;
   authObservable:Observable<authState>;
@@ -31,6 +31,14 @@ export class HomePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  ngAfterContentInit(): void {
+      this.form.patchValue({
+        email:"naveenkosigi@gmail.com",
+        password:"Sdpod@321"
+      });
+      this.onSave();
   }
 
  async onSave() : Promise<any>{

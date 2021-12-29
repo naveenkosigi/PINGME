@@ -43,11 +43,11 @@
     width: 100%;
     height: 100%;
     background-color: white;
-    border-radius: 3rem;
 }
 
 .message-container{
     grid-area: message;
+    border-radius: 3rem;
 }
 
 nav .nav-pages{

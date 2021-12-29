@@ -1,9 +1,10 @@
 .chat-container{
-    height: 112px;
+    height: auto;
     width: 100%;
     display: grid;
-    grid-template-areas: "profile name name time"
-                        "profile message message count";
+    grid-template-areas: "profile name . time"
+                        "profile message . count"
+                        ".       line    line    line";
     grid-template-rows: repeat(4,auto);
     grid-template-columns: minmax(0px,max-content);                              
 }
@@ -20,4 +21,18 @@ img{
     font-weight: 400;
     font-size: 1.3125rem;
     text-transform: capitalize;
+    align-self: center;
+}
+
+hr{
+    grid-area: line;
+    border-top: 0px solid grey;
+}
+
+.message{
+    grid-area: message;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    color: grey;
 }

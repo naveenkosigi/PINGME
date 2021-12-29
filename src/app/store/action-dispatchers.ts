@@ -1,8 +1,14 @@
 import { Action } from "@ngrx/store";
-import { logInConstant } from "../type-definitions/authentication";
+import { logInConstant, logOutConstant } from "../type-definitions/authentication";
 
 export class logIn implements Action{
-    type=logInConstant
+    type=logInConstant;
+
+    constructor(){}
+}
+
+export class logOut implements Action{
+    type=logOutConstant;
 
     constructor(){}
 }

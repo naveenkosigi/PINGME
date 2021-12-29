@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { logIn } from '../store/action-dispatchers';
-import { authenticationReducer, authState} from '../store/action-reducers';
+import { handleErrorMessage } from '../common-functions';
+import { authenticationService } from '../services/authentication-service';
+import { logIn, logOut } from '../store/action-dispatchers';
+import { authState} from '../store/action-reducers';
+import { appState } from '../store/store-definitions';
 
 @Component({
   selector: 'app-home-page',
@@ -15,12 +19,15 @@ export class HomePageComponent implements OnInit {
 
   form:FormGroup;
   authObservable:Observable<authState>;
-  constructor(private fireStoreAuth:AngularFireAuth,private store:Store<{authenticate:authState}>) { 
+  constructor(private fireStoreAuth:AngularFireAuth,private store:Store<appState>,private authenticationService:authenticationService,private router:Router) { 
     this.form=new FormGroup({
       email:new FormControl(null,[Validators.required,Validators.email]),
       password:new FormControl(null,Validators.required)
     });
     this.authObservable=this.store.select('authenticate');
+    fireStoreAuth.onAuthStateChanged((data) => {
+      console.log(data);
+    })
   }
 
   ngOnInit(): void {
@@ -36,12 +43,13 @@ export class HomePageComponent implements OnInit {
         this.store.dispatch(new logIn());
         this.authObservable.subscribe((auth:authState) => {
           console.log(auth);
-        })
+        });
+        this.router.navigateByUrl("/home");
       }
       catch(e){
-        alert("Verify your username/password");
+        handleErrorMessage("Username/Password is invalid");
+        this.store.dispatch(new logOut());
       }
-      
     }
   }
 }

@@ -1,9 +1,10 @@
 import { NgModule} from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { MessageListViewComponent } from "../messagesAppModule/message-list-view/message-list-view.component";
+import { authenticationGuard } from "../services/canActivate-guard-service";
 
 const routes:Routes=[
-    {path:"",component:MessageListViewComponent}
+    {path:"",component:MessageListViewComponent,canActivate:[authenticationGuard]}
 ];
 
 

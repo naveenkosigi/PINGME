@@ -4,6 +4,8 @@ import { AngularFireModule } from "@angular/fire/compat";
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore/'; 
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { authenticationService } from "../services/authentication-service";
+import { authenticationGuard } from "../services/canActivate-guard-service";
 
 
 @NgModule({
@@ -18,7 +20,8 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
     AngularFirestoreModule,
     AngularFireAuthModule,
     ReactiveFormsModule
-   ]
+   ],
+   providers:[authenticationService,authenticationGuard]
 })
 
 export class sharedModule{}

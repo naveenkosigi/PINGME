@@ -14,8 +14,7 @@ export function authenticationReducer(state:authState=initialState,action:logIn)
             return {
                 ...state,
                 status : true
-            }
-
+            }  
             default:
                 return initialState;
     }

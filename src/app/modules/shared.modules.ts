@@ -6,6 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { authenticationService } from "../services/authentication-service";
 import { authenticationGuard } from "../services/canActivate-guard-service";
+import { CommonModule } from "@angular/common";
 
 
 @NgModule({

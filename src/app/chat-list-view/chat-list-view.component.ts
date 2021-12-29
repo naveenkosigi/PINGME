@@ -24,7 +24,7 @@ export class ChatListViewComponent implements OnInit {
         this.usersCollection.push(new userModel(
           doc.payload.doc.id,
           doc.payload.doc.data().name,
-          ""
+          doc.payload.doc.data().photo ? doc.payload.doc.data().photo : "" 
         ));
       });
     });

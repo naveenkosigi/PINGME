@@ -12,9 +12,9 @@
     display: grid;
     grid-template-areas: "header header header header header"
                          "others others others others others"
-                         "chats chats   message message message"
-                         "chats chats   message message message"
-                         "chats chats   message message message";
+                         "chats chats   message message ."
+                         "chats chats   message message ."
+                         "chats chats   message message .";
     grid-template-rows: 6rem 4rem repeat(3,auto);
     grid-template-columns: repeat(5,auto);
     row-gap: 1rem;
@@ -43,11 +43,16 @@
     width: 100%;
     height: 100%;
     background-color: white;
+    overflow: auto;
 }
 
 .message-container{
     grid-area: message;
     border-radius: 3rem;
+}
+
+.chats-container{
+    max-width: 400px;
 }
 
 nav .nav-pages{

@@ -1,4 +1,23 @@
 .chat-container{
     height: 112px;
     width: 100%;
+    display: grid;
+    grid-template-areas: "profile name name time"
+                        "profile message message count";
+    grid-template-rows: repeat(4,auto);
+    grid-template-columns: minmax(0px,max-content);                              
+}
+
+img{
+    grid-area: profile;
+    width: 90px;
+    padding: 11px;
+    border-radius: 45px;
+}
+
+.user-name{
+    grid-area: name;
+    font-weight: 400;
+    font-size: 1.3125rem;
+    text-transform: capitalize;
 }

@@ -46,8 +46,8 @@ export class HomePageComponent implements OnInit {
         });
         this.router.navigateByUrl("/home");
       }
-      catch(e){
-        handleErrorMessage("Username/Password is invalid");
+      catch(e:any){
+        handleErrorMessage(e.message);
         this.store.dispatch(new logOut());
       }
     }

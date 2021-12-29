@@ -1,3 +1,4 @@
+import { logInConstant } from "../type-definitions/authentication";
 import { logIn } from "./action-dispatchers";
 
 export interface authState{
@@ -10,12 +11,12 @@ const initialState:authState={
 
 export function authenticationReducer(state:authState=initialState,action:logIn) : authState{
     switch(action.type){
-        case action.type : 
-            return {
-                ...state,
-                status : true
-            }  
-            default:
-                return initialState;
+        case logInConstant : 
+                    return {
+                        ...state,
+                        status : true
+                    };  
+        default:
+            return initialState;
     }
 }

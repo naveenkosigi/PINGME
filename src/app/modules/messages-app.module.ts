@@ -4,6 +4,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { ChatComponentComponent } from "../chat-component/chat-component.component";
 import { ChatListViewComponent } from "../chat-list-view/chat-list-view.component";
 import { MessageListViewComponent } from "../messagesAppModule/message-list-view/message-list-view.component";
+import { MessagingComponentComponent } from "../messaging-component/messaging-component.component";
 import { authenticationGuard } from "../services/canActivate-guard-service";
 
 const routes:Routes=[
@@ -15,7 +16,8 @@ const routes:Routes=[
     declarations:[
         MessageListViewComponent,
         ChatListViewComponent,
-        ChatComponentComponent
+        ChatComponentComponent,
+        MessagingComponentComponent
     ],
     imports:[
         RouterModule.forChild(routes),

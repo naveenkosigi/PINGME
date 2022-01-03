@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { userService } from '../services/users-service';
 import { userModel } from '../type-definitions/authentication';
 
 @Component({
@@ -11,15 +12,17 @@ import { userModel } from '../type-definitions/authentication';
 })
 export class ChatListViewComponent implements OnInit {
 
-  usersCollectionObservable:Observable<any>;
   usersCollection:userModel[]=[];
-  constructor(private fireStore:AngularFirestore) { 
+  constructor(private fireStore:AngularFirestore,private usersService:userService) { 
     
-    this.usersCollectionObservable=this.fireStore.collection("users").snapshotChanges();
   }
 
   ngOnInit(): void {
-    this.usersCollectionObservable.subscribe((docs) => {
+    this.usersService.getUsersCollection().then((data) => {
+      this.usersCollection=data;
+    });
+    /*
+    this.usersService.getUsersCollectionObservable().subscribe((docs) => {
       docs.forEach((doc:any) => {
         this.usersCollection.push(new userModel(
           doc.payload.doc.id,
@@ -28,6 +31,7 @@ export class ChatListViewComponent implements OnInit {
         ));
       });
     });
+    */
   }
 
 }

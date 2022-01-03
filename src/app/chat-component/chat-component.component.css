@@ -6,7 +6,8 @@
                         "profile message . count"
                         ".       line    line    line";
     grid-template-rows: repeat(4,auto);
-    grid-template-columns: minmax(0px,max-content);                              
+    grid-template-columns: minmax(0px,max-content);
+    cursor: pointer;                              
 }
 
 img{

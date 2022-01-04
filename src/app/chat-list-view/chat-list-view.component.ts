@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { chatService } from '../services/chat-service';
 import { userService } from '../services/users-service';
 import { userModel } from '../type-definitions/authentication';
 
@@ -13,7 +14,7 @@ import { userModel } from '../type-definitions/authentication';
 export class ChatListViewComponent implements OnInit {
 
   usersCollection:userModel[]=[];
-  constructor(private fireStore:AngularFirestore,private usersService:userService) { 
+  constructor(private fireStore:AngularFirestore,private usersService:userService,private chatService:chatService) { 
     
   }
 

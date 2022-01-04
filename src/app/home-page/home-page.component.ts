@@ -35,7 +35,7 @@ export class HomePageComponent implements OnInit,AfterContentInit {
 
   ngAfterContentInit(): void {
       this.form.patchValue({
-        email:"naveenkosigi@gmail.com",
+        email:"naveenkosigi+1@gmail.com",
         password:"Sdpod@321"
       });
       this.onSave();

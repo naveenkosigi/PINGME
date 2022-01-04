@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { chatService } from '../services/chat-service';
 import { userModel } from '../type-definitions/authentication';
 
 @Component({
@@ -8,12 +9,16 @@ import { userModel } from '../type-definitions/authentication';
 })
 export class ChatComponentComponent implements OnInit {
 
-  @Input() user:userModel | any=undefined;
-  constructor() { 
+  @Input() user:userModel | null=null;
+  constructor(private chatService:chatService) { 
   }
 
   ngOnInit(): void {
     console.log(this.user);
+  }
+
+  showChat(){
+    this.chatService.initChatStoreForUserId((<userModel>this.user)?.id);
   }
 
 }

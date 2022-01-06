@@ -23,11 +23,13 @@ export function authenticationReducer(state:authState=initialState,action:logIn)
 
 
 export interface chatState{
-    chats: {id:string,chat:chatModel[]} | {}
+    chats: {id:string,chat:chatModel[]} | {},
+    currentUser:string | null
 }
 
 const initialChatState:chatState={
-    chats:{}
+    chats:{},
+    currentUser:null
 }
 
 export function chatReducer(state:chatState=initialChatState,action:addChat) : chatState{
@@ -35,7 +37,8 @@ export function chatReducer(state:chatState=initialChatState,action:addChat) : c
         case addChatConstant : 
             return{
                 ...state,
-                chats:{...state.chats,[<string>action.payload?.id] : [...<chatModel[]>action.payload?.chat]}
+                chats:{...state.chats,[<string>action.payload?.id] : [...<chatModel[]>action.payload?.chat]},
+                currentUser:<string>action.payload?.id
             }
         default : 
             return state;    

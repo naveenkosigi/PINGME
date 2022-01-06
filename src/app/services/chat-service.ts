@@ -36,10 +36,6 @@ export class chatService{
                 toSend.chat.push(new chatModel(data.content,data.from.id,data.to.id));
             }));
             this.store.dispatch(new addChat(toSend));
-            this.store.select('chat').subscribe((data) => {
-                console.log(data);
-            });
-            
         }
         catch(e:any){
             handleErrorMessage(e.message);

@@ -1,5 +1,5 @@
-import { logInConstant } from "../type-definitions/authentication";
-import { logIn } from "./action-dispatchers";
+import { addChatConstant, chatModel, logInConstant } from "../type-definitions/authentication";
+import { addChat, logIn } from "./action-dispatchers";
 
 export interface authState{
     status:boolean
@@ -17,6 +17,27 @@ export function authenticationReducer(state:authState=initialState,action:logIn)
                         status : true
                     };  
         default:
-            return initialState;
+            return state;
+    }
+}
+
+
+export interface chatState{
+    chats: {id:string,chat:chatModel[]} | {}
+}
+
+const initialChatState:chatState={
+    chats:{}
+}
+
+export function chatReducer(state:chatState=initialChatState,action:addChat) : chatState{
+    switch(action.type){
+        case addChatConstant : 
+            return{
+                ...state,
+                chats:{...state.chats,[<string>action.payload?.id] : [...<chatModel[]>action.payload?.chat]}
+            }
+        default : 
+            return state;    
     }
 }

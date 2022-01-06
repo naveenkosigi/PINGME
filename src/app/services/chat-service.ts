@@ -2,15 +2,18 @@ import { Injectable } from "@angular/core";
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { AngularFirestore } from "@angular/fire/compat/firestore";
 import { combineLatest, Subject } from "rxjs";
-import { chatModel, userModel } from "../type-definitions/authentication";
+import { chatDoc, chatModel, userModel } from "../type-definitions/authentication";
 import { take } from "rxjs/operators";
 import { handleErrorMessage } from "../common-functions";
+import { appState } from "../store/store-definitions";
+import { Store } from "@ngrx/store";
+import { addChat } from "../store/action-dispatchers";
 
 @Injectable({providedIn:'root'})
 export class chatService{
     private selectedUser:Subject<userModel>=new Subject();
 
-    constructor(private fireStore:AngularFirestore,private fireStoreAuth:AngularFireAuth){
+    constructor(private fireStore:AngularFirestore,private fireStoreAuth:AngularFireAuth,private store:Store<appState>){
 
     }
 
@@ -25,14 +28,18 @@ export class chatService{
             const docs : any[] =await combineLatest([collection1.valueChanges(),collection2.valueChanges()]).pipe(take(1)).toPromise();
             const toSend: {id:string,chat:chatModel[]}={id:otherUserDoc.ref.id,chat:[]};
             
-            docs[0].forEach(((data: chatModel)  => {
-               toSend.chat.push(data);
+            docs[0].forEach(((data: chatDoc)  => {
+               toSend.chat.push(new chatModel(data.content,data.from.id,data.to.id));
             }));
 
-            docs[1].forEach(((data: chatModel) => {
-                toSend.chat.push(data);
+            docs[1].forEach(((data: chatDoc) => {
+                toSend.chat.push(new chatModel(data.content,data.from.id,data.to.id));
             }));
-            console.log(toSend);
+            this.store.dispatch(new addChat(toSend));
+            this.store.select('chat').subscribe((data) => {
+                console.log(data);
+            });
+            
         }
         catch(e:any){
             handleErrorMessage(e.message);

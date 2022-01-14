@@ -7,7 +7,13 @@
                         ".       line    line    line";
     grid-template-rows: repeat(4,auto);
     grid-template-columns: minmax(0px,max-content);
-    cursor: pointer;                              
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.chat-container:hover,.chat-container.selected{
+    background-color: #0096FF;
+    transform: scale(1.1);
 }
 
 img{

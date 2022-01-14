@@ -48,7 +48,12 @@ export class MessagingComponentComponent implements OnInit,OnDestroy,AfterViewIn
       this.mutationObserver=new MutationObserver(() => {
         const nodes=this.threadContainer?.nativeElement.querySelectorAll(".chat");
         const lastNode=nodes[nodes.length-1];
-        lastNode.scrollIntoView({behavior : 'smooth'});
+        if(lastNode){
+          setTimeout(() => {
+            lastNode.scrollIntoView({behavior : 'smooth'});
+  
+          }, 500);
+        }
       });
       this.mutationObserver.observe(targetNode,config);
   }

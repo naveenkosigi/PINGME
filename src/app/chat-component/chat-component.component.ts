@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { chatService } from '../services/chat-service';
 import { userModel } from '../type-definitions/authentication';
 
@@ -10,7 +10,9 @@ import { userModel } from '../type-definitions/authentication';
 export class ChatComponentComponent implements OnInit {
 
   @Input() user:userModel | null=null;
-  constructor(private chatService:chatService) { 
+  @ViewChild('chatContainer') chatContainer:ElementRef;
+  constructor(private chatService:chatService) {
+
   }
 
   ngOnInit(): void {
@@ -19,6 +21,7 @@ export class ChatComponentComponent implements OnInit {
 
   showChat(){
     this.chatService.initChatStoreForUserId((<userModel>this.user)?.id);
+    (this.chatContainer.nativeElement as HTMLElement).classList.add('selected');
   }
 
 }

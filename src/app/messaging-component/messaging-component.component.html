@@ -1,12 +1,11 @@
 <div class="container">
-    <div id="thread_container">
+    <div id="thread_container" #threadContainer>
         <div class="chat" *ngFor="let chat of chats" [ngClass]="chat.from === fromUser ? 'recieved' : 'sent'">
             {{chat.content}}
         </div>
     </div>
     <div id="type-container">
-        <textarea rows="4" cols="50" placeholder="Type a message ...">
-        </textarea>   
+        <textarea rows="4" cols="50" placeholder="Type a message ..."></textarea>   
         <img src="../../assets/istockphoto-906857980-170667a.jpg"> 
     </div>
 </div>

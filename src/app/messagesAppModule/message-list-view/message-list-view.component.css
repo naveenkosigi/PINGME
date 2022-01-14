@@ -16,7 +16,6 @@
                          "chats message   message message message"
                          "chats message   message message message";
     grid-template-rows: 6rem 4rem repeat(3,auto);
-    grid-template-columns: minmax(0px,max-content);
     row-gap: 1rem;
     column-gap: 4rem;                     
 }

@@ -22,22 +22,23 @@ export class chatService{
             const currentUserDoc=this.fireStore.collection("users").doc((await this.fireStoreAuth.currentUser)?.uid);
             const otherUserDoc=this.fireStore.collection("users").doc(uid);
 
-            const collection1=this.fireStore.collection("messages",ref => ref.where("from","==",currentUserDoc.ref).where("to","==",otherUserDoc.ref));
-            const collection2=this.fireStore.collection("messages",ref => ref.where("from","==",otherUserDoc.ref).where("to","==",currentUserDoc.ref));
+            const collection1=this.fireStore.collection("messages",ref => ref.where("from","==",currentUserDoc.ref).where("to","==",otherUserDoc.ref).orderBy("timeSent",'desc'));
+            const collection2=this.fireStore.collection("messages",ref => ref.where("from","==",otherUserDoc.ref).where("to","==",currentUserDoc.ref).orderBy("timeSent",'desc'));
 
             const docs : any[] =await combineLatest([collection1.valueChanges(),collection2.valueChanges()]).pipe(take(1)).toPromise();
             const toSend: {id:string,chat:chatModel[]}={id:otherUserDoc.ref.id,chat:[]};
             
             docs[0].forEach(((data: chatDoc)  => {
-               toSend.chat.push(new chatModel(data.content,data.from.id,data.to.id,new Date(data.timeSent.seconds)));
+               toSend.chat.push(new chatModel(data.content,data.from.id,data.to.id,new Date(data.timeSent.seconds * 1000)));
             }));
 
             docs[1].forEach(((data: chatDoc) => {
-                toSend.chat.push(new chatModel(data.content,data.from.id,data.to.id,new Date(data.timeSent.seconds)));
+                toSend.chat.push(new chatModel(data.content,data.from.id,data.to.id,new Date(data.timeSent.seconds * 1000)));
             }));
             this.store.dispatch(new addChat(toSend));
         }
         catch(e:any){
+            throw e;
             handleErrorMessage(e.message);
         }
     }

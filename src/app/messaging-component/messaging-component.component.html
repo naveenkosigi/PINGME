@@ -1,6 +1,8 @@
 <div class="container">
     <div id="thread_container">
-        thread
+        <div class="chat" *ngFor="let chat of chats" [ngClass]="chat.from === fromUser ? 'recieved' : 'sent'">
+            {{chat.content}}
+        </div>
     </div>
     
     <div id="type-container">

@@ -22,8 +22,12 @@ export function authenticationReducer(state:authState=initialState,action:logIn)
 }
 
 
+export interface chatFormatInStore{
+    [k:string] : string | chatModel[]
+}
+
 export interface chatState{
-    chats: {id:string,chat:chatModel[]} | {},
+    chats: chatFormatInStore,
     currentUser:string | null
 }
 

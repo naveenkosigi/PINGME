@@ -1,15 +1,18 @@
 div.container{
     padding: 16px;
-    display: flex;
-    flex-direction: column;
     justify-content: space-between;
     height: 100%;
+    position: relative;
 }
 
 #type-container{
     height: 83px;
     display: flex;
     justify-content: center;
+    position: sticky;
+    bottom: 0;
+    background-color: white;
+    margin-top: 5px;
 }
 
 #type-container input{

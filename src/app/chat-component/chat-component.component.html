@@ -1,4 +1,4 @@
-<div class="chat-container" (click)="showChat()" *ngIf="user" #chatContainer>
+<div class="chat-container" (click)="showChat()" *ngIf="user" #chatContainer appChatClick>
     <img src="{{user.photo}}">
     <div class="user-name">
         {{user.name}}

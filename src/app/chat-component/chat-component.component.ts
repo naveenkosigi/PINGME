@@ -10,7 +10,6 @@ import { userModel } from '../type-definitions/authentication';
 export class ChatComponentComponent implements OnInit {
 
   @Input() user:userModel | null=null;
-  @ViewChild('chatContainer') chatContainer:ElementRef;
   constructor(private chatService:chatService) {
 
   }
@@ -21,7 +20,6 @@ export class ChatComponentComponent implements OnInit {
 
   showChat(){
     this.chatService.initChatStoreForUserId((<userModel>this.user)?.id);
-    (this.chatContainer.nativeElement as HTMLElement).classList.add('selected');
   }
 
 }

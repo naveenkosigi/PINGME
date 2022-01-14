@@ -14,7 +14,7 @@ div.container{
     margin-top: 20px;
 }
 
-#type-container input{
+#type-container textarea{
     width: 100%;
     border-radius: 45px;
     border: 0px;
@@ -23,6 +23,7 @@ div.container{
     letter-spacing: 1px;
     font-weight: 400;
     text-align: center;
+    resize: none;
 }
 
 #type-container img{
@@ -30,7 +31,7 @@ div.container{
     height: 100%;
 }
 
-#type-container input:focus-visible{
+#type-container textarea:focus-visible{
     border: 0px;
     outline: 1px solid #0096FF;
 }

@@ -29,11 +29,11 @@ export class chatService{
             const toSend: {id:string,chat:chatModel[]}={id:otherUserDoc.ref.id,chat:[]};
             
             docs[0].forEach(((data: chatDoc)  => {
-               toSend.chat.push(new chatModel(data.content,data.from.id,data.to.id));
+               toSend.chat.push(new chatModel(data.content,data.from.id,data.to.id,new Date(data.timeSent.seconds)));
             }));
 
             docs[1].forEach(((data: chatDoc) => {
-                toSend.chat.push(new chatModel(data.content,data.from.id,data.to.id));
+                toSend.chat.push(new chatModel(data.content,data.from.id,data.to.id,new Date(data.timeSent.seconds)));
             }));
             this.store.dispatch(new addChat(toSend));
         }

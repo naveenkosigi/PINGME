@@ -1,4 +1,5 @@
 import { DocumentReference } from "@angular/fire/compat/firestore";
+import { Timestamp } from 'firebase/firestore';
 
 export const logInConstant="LOGIN";
 export const logOutConstant="LOGOUT";
@@ -12,13 +13,15 @@ export class userModel{
 }
 
 export class chatModel{
-    constructor(public content:string,public from:string,public to:string){}
+    constructor(public content:string,public from:string,public to:string,public timeSent:Date){}
 }
+
 
 export type chatDoc={
     content:string,
     from:DocumentReference,
-    to:DocumentReference
+    to:DocumentReference,
+    timeSent:Timestamp
 }
 
 

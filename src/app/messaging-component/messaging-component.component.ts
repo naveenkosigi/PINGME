@@ -2,6 +2,7 @@ import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit,
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
+import { addMessage, addMessageStarted } from '../store/action-dispatchers';
 import { chatState } from '../store/action-reducers';
 import { appState } from '../store/store-definitions';
 import { chatModel } from '../type-definitions/authentication';
@@ -20,6 +21,7 @@ export class MessagingComponentComponent implements OnInit,OnDestroy,AfterViewIn
   private currentLoggedInuser : string | undefined;
   private mutationObserver:MutationObserver | undefined;
   @ViewChild('threadContainer') threadContainer: ElementRef | undefined;
+  @ViewChild('messageContent') messageContent : ElementRef;
   constructor(private store:Store<appState>,private fireStoreAuth:AngularFireAuth) { 
     this.chatObservable=this.store.select('chat');
   }
@@ -56,5 +58,14 @@ export class MessagingComponentComponent implements OnInit,OnDestroy,AfterViewIn
         }
       });
       this.mutationObserver.observe(targetNode,config);
+  }
+
+  addMessage(){
+    const value=(this.messageContent.nativeElement as HTMLInputElement).value;
+    if((<string>this.currentLoggedInuser)?.length>0 && this.fromUser.length>0){
+      this.store.dispatch(new addMessageStarted(
+        new chatModel(value,<string>this.currentLoggedInuser,<string>this.fromUser,new Date())
+      ));
+    }
   }
 }

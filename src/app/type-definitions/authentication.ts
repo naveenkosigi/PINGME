@@ -4,6 +4,8 @@ import { Timestamp } from 'firebase/firestore';
 export const logInConstant="LOGIN";
 export const logOutConstant="LOGOUT";
 export const addChatConstant="ADDCHAT";
+export const addMessageStartedConstant="ADDMESSAGESTARTED";
+export const addMessageConstant="ADDMESSAGE";
 
 export class userModel{
     

@@ -28,7 +28,7 @@ export class chatEffects{
             })).pipe(
                 map(() => {
                         console.log("inside add message");
-                        return new addMessage();
+                        return new addMessage(payload);
                 })
             );
       })

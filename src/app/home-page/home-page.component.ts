@@ -38,7 +38,6 @@ export class HomePageComponent implements OnInit,AfterContentInit {
         email:"naveenkosigi+1@gmail.com",
         password:"Sdpod@321"
       });
-      this.onSave();
   }
 
  async onSave() : Promise<any>{

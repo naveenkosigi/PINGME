@@ -28,13 +28,16 @@ export class chatService{
             const docs : any[] =await combineLatest([collection1.valueChanges(),collection2.valueChanges()]).pipe(take(1)).toPromise();
             const toSend: {id:string,chat:chatModel[]}={id:otherUserDoc.ref.id,chat:[]};
             
-            docs[0].forEach(((data: chatDoc)  => {
-               toSend.chat.push(new chatModel(data.content,data.from.id,data.to.id,new Date(data.timeSent.seconds * 1000)));
-            }));
+            const datas=[...docs[0],...docs[1]];
 
-            docs[1].forEach(((data: chatDoc) => {
+            datas.sort((a,b) => {
+                return a.timeSent < b.timeSent ? -1 : 1;
+            });
+
+            datas.forEach(((data: chatDoc) => {
                 toSend.chat.push(new chatModel(data.content,data.from.id,data.to.id,new Date(data.timeSent.seconds * 1000)));
             }));
+            
             this.store.dispatch(new addChat(toSend));
         }
         catch(e:any){
